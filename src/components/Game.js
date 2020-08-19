@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ConfigButton from './ConfigButton';
+import { connect } from 'react-redux';
 
 class Game extends React.Component {
   render() {
@@ -8,11 +9,18 @@ class Game extends React.Component {
     return (
       <div>
         <header>
-          <p data-testid="header-player-name">
-            Jogador: {player}
+          <p>
+            Player:
+            <span data-testid="header-player-name"> {player}
+            </span>
           </p>
           <img data-testid="header-profile-picture" src={`https://www.gravatar.com/avatar/${hash}`} alt="jogador" />
-          <p data-testid="header-score">Placar: 0</p>
+          <p>
+            Score:
+            <span data-testid="header-score">
+              0
+            </span>
+          </p>
         </header>
         <ConfigButton />
       </div>
@@ -25,4 +33,9 @@ Game.propTypes = {
   player: PropTypes.string.isRequired,
 };
 
-export default Game;
+const mapStateToProps = (state) => ({
+  name: state.userReducer.name,
+  hash: state.userReducer.hash,
+});
+
+export default connect(mapStateToProps)(Game);
