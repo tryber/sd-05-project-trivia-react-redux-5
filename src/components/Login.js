@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ConfigButton from './ConfigButton';
+import GameButton from './GameButton';
+import { connect } from 'react-redux';
+import { addUser } from '../action';
 
 class Login extends React.Component {
   constructor(props) {
@@ -7,7 +11,7 @@ class Login extends React.Component {
     this.state = {
       name: '',
       email: '',
-    }
+    };
   }
 
   handleInput(name, value) {
@@ -17,6 +21,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { addUserProps } = this.props;
     return (
       <div>
         <input
@@ -35,14 +40,20 @@ class Login extends React.Component {
           data-testid="input-gravatar-email"
           onChange={(e) => this.handleInput(e.target.name, e.target.value)}
         />
-        <div>
-          <Link to="/game" data-testid="btn-play">
-            <button disabled={!(this.state.name && this.state.email)}>Jogar</button>
-          </Link>
-        </div>
+        <GameButton click={() => addUserProps(this.state)} isAvailable={!(this.state.name && this.state.email)} />
+        <ConfigButton />
       </div>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  addUserProps: (e) => dispatch(addUser(e)),
+});
+
+Login.propTypes = {
+  addUserProps: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Login);
+
