@@ -16,7 +16,7 @@ function fetchToken() {
     return data.token;
   },
     (error) => console.log('fetchToken', error));
-};
+}
 
 function fetchQuestions() {
   return (dispatch) => {
@@ -27,6 +27,6 @@ function fetchQuestions() {
       .then((data) => console.log(data.results)),
     );
   };
-};
+}
 
 export default fetchQuestions;
