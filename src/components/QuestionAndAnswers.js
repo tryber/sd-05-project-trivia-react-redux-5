@@ -16,9 +16,9 @@ function answers(questions) {
     'data-testid': `wrong-answer-${i}`,
   }));
 
-  const answers = [...incorrect, correct];
+  const allAnswers = [...incorrect, correct];
 
-  return randomAnswers(answers);
+  return randomAnswers(allAnswers);
 }
 
 class QuestionAndAnswers extends React.Component {
