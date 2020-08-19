@@ -7,7 +7,7 @@ const INITIAL_STATE = [];
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_USER:
-      (state.filter(action.email))
+      (state.filter(action.email));
       return ([
         ...state,
         {

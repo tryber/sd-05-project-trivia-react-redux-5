@@ -9,24 +9,24 @@ const isRequesting = () => ({
 });
 
 const fetchToken = () => {
-  return (fetch(TOKEN_URL)
+  return fetch(TOKEN_URL)
   .then((response) => response.json())
   .then((data) => {
     localStorage.setItem('token', data.token);
     return data.token;
   },
-    (error) => console.log('fetchToken', error)));
+    (error) => console.log('fetchToken', error));
 };
 
 const fetchQuestions = () => {
-  return ((dispatch) => {
+  return (dispatch) => {
     dispatch(isRequesting());
     return fetchToken().then((token) =>
       fetch(QUESTIONS_URL + token)
       .then((response) => response.json())
-      .then((data) => console.log(data.results),)
+      .then((data) => console.log(data.results)),
     );
-  });
+  };
 };
 
 export default fetchQuestions;

@@ -23,4 +23,4 @@ export default function GameButton({ isAvailable }) {
 
 GameButton.propTypes = {
   isAvailable: PropTypes.bool.isRequired,
-}
+};
