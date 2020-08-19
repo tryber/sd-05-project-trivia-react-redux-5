@@ -3,6 +3,23 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import randomAnswers from '../services/randomArray';
 
+function answers(questions) {
+  const { correct_answer, incorrect_answers } = questions;
+  const correct = {
+    answer: correct_answer,
+    isCorrect: true,
+    'data-testid': 'correct-answer',
+  };
+  const incorrect = incorrect_answers.map((answer, i) => ({
+    answer,
+    isCorrect: false,
+    'data-testid': `wrong-answer-${i}`,
+  }));
+
+  const answers = [...incorrect, correct];
+
+  return randomAnswers(answers);
+}
 
 class QuestionAndAnswers extends React.Component {
   constructor(props) {
@@ -16,24 +33,6 @@ class QuestionAndAnswers extends React.Component {
     this.setState({ index: this.state.index + 1 });
   }
 
-  answers(questions) {
-    const { correct_answer, incorrect_answers } = questions;
-    const correct = {
-      answer: correct_answer,
-      isCorrect: true,
-      'data-testid': 'correct-answer',
-    };
-    const incorrect = incorrect_answers.map((answer, i) => ({
-      answer,
-      isCorrect: false,
-      'data-testid': `wrong-answer-${i}`,
-    }));
-
-    const answers = [...incorrect, correct];
-
-    return randomAnswers(answers);
-  }
-
   render() {
     const { questions } = this.props;
     const { index } = this.state;
@@ -44,7 +43,7 @@ class QuestionAndAnswers extends React.Component {
             <p data-testid="question-category">{questions[index].category}</p>
             <p data-testid="question-text">{questions[index].question}</p>
             {
-            this.answers(questions[index]).map((answer) =>
+            answers(questions[index]).map((answer) =>
             (<button key={Math.random() * 100} data-testid={answer['data-testid']}>{answer.answer}</button>),
             )
             }
