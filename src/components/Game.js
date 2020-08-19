@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ConfigButton from './ConfigButton';
 
 class Game extends React.Component {
@@ -18,5 +19,10 @@ class Game extends React.Component {
     );
   }
 }
+
+Game.propTypes = {
+  hash: PropTypes.string.isRequired,
+  player: PropTypes.string.isRequired,
+};
 
 export default Game;

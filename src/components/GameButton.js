@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import fetchToken from '../services/TokenAPI';
 import fetchQuestions from '../services/TokenAPI';
 
-export default function GameButton({click, isAvailable}) {
+export default function GameButton({ isAvailable }) {
   const dispatch = useDispatch();
   return (
     <div>
@@ -19,4 +19,8 @@ export default function GameButton({click, isAvailable}) {
       </Link>
     </div>
   );
+}
+
+GameButton.propTypes = {
+  isAvailable: PropTypes.bool.isRequired,
 }

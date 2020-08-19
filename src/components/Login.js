@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ConfigButton from './ConfigButton';
 import GameButton from './GameButton';
-import { connect } from 'react-redux';
 import { addUser } from '../action';
 
 class Login extends React.Component {
@@ -18,6 +18,10 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  isAvailable() {
+    return !(this.state.name && this.state.email);
   }
 
   render() {
@@ -40,7 +44,7 @@ class Login extends React.Component {
           data-testid="input-gravatar-email"
           onChange={(e) => this.handleInput(e.target.name, e.target.value)}
         />
-        <GameButton click={() => addUserProps(this.state)} isAvailable={!(this.state.name && this.state.email)} />
+        <GameButton click={() => addUserProps(this.state)} isAvailable={this.isAvailable()} />
         <ConfigButton />
       </div>
     );
