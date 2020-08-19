@@ -7,7 +7,7 @@ class QuestionAndAnswers extends React.Component {
     super(props);
     this.state = {
       index: 0,
-    }
+    };
   }
 
   handleClick() {

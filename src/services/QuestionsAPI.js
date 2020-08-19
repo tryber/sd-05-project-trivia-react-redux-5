@@ -7,6 +7,6 @@ function fetchQuestions() {
     fetch(QUESTIONS_URL + token)
     .then((response) => response.json())
     .then((data) => data.results));
-};
+}
 
 export default fetchQuestions;
