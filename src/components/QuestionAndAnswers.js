@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class QuestionAndAnswers extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class QuestionAndAnswers extends React.Component {
   }
 
   handleClick() {
-    this.setState({ index: this.state.index + 1 })
+    this.setState({ index: this.state.index + 1 });
   }
 
   render() {
@@ -27,6 +28,10 @@ class QuestionAndAnswers extends React.Component {
       </div>
     );
   }
+}
+
+QuestionAndAnswers.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 const mapStateToProps = (state) => ({

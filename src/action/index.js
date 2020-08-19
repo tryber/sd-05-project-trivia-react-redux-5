@@ -1,4 +1,4 @@
-import fetchQuestions from "../services/QuestionsAPI";
+import fetchQuestions from '../services/QuestionsAPI';
 
 export const IS_REQUESTING = 'IS_REQUESTING';
 export const ADD_QUESTION = 'ADD_QUESTION';
@@ -18,13 +18,13 @@ const isRequesting = () => ({
 
 const addQuestions = (questions) => ({
   type: ADD_QUESTION,
-  questions
+  questions,
 });
 
 export function fetchAndAddQuestions() {
   return (dispatch) => {
     dispatch(isRequesting());
     return fetchQuestions()
-    .then(questions => dispatch(addQuestions(questions)))
+    .then((questions) => dispatch(addQuestions(questions)));
   };
 }

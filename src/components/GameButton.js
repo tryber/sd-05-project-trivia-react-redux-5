@@ -26,4 +26,5 @@ export default function GameButton({ isAvailable, click }) {
 
 GameButton.propTypes = {
   isAvailable: PropTypes.bool.isRequired,
+  click: PropTypes.func.isRequired,
 };

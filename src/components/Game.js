@@ -1,12 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConfigButton from './ConfigButton';
-import { connect } from 'react-redux';
 import QuestionAndAnswers from './QuestionAndAnswers';
 
 class Game extends React.Component {
-  
-  header(hash, player) {
+  header() {
+    const { hash, player } = this.props;
     return (
       <header>
         <p>
@@ -26,10 +26,9 @@ class Game extends React.Component {
   }
   
   render() {
-    const { hash, player } = this.props;
     return (
       <div>
-        {this.header(hash, player)}
+        {this.header()}
         <QuestionAndAnswers />
         <ConfigButton />
       </div>
@@ -43,7 +42,7 @@ Game.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  name: state.userReducer.name,
+  player: state.userReducer.name,
   hash: state.userReducer.hash,
 });
 
