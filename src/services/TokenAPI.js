@@ -8,7 +8,7 @@ const isRequesting = () => ({
   type: IS_REQUESTING,
 });
 
-const fetchToken = () => {
+function fetchToken() {
   return fetch(TOKEN_URL)
   .then((response) => response.json())
   .then((data) => {
@@ -18,7 +18,7 @@ const fetchToken = () => {
     (error) => console.log('fetchToken', error));
 };
 
-const fetchQuestions = () => {
+function fetchQuestions() {
   return (dispatch) => {
     dispatch(isRequesting());
     return fetchToken().then((token) =>
