@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import randomAnswers from '../services/randomArray';
+
 
 class QuestionAndAnswers extends React.Component {
   constructor(props) {
@@ -12,16 +14,6 @@ class QuestionAndAnswers extends React.Component {
 
   handleClick() {
     this.setState({ index: this.state.index + 1 });
-  }
-
-  randomAnswers(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      const a = array[i];
-      array[i] = array[j];
-      array[j] = a;
-    }
-    return array;
   }
 
   answers(questions) {
@@ -36,12 +28,10 @@ class QuestionAndAnswers extends React.Component {
       isCorrect: false,
       'data-testid': `wrong-answer-${i}`,
     }));
-    
-    const answers = [...incorrect, correct]
 
-    const randomAnswers = [...answers];
-    
-    return this.randomAnswers(randomAnswers);
+    const answers = [...incorrect, correct];
+
+    return randomAnswers(answers);
   }
 
   render() {
@@ -55,10 +45,9 @@ class QuestionAndAnswers extends React.Component {
             <p data-testid="question-text">{questions[index].question}</p>
             {
             this.answers(questions[index]).map((answer) =>
-            (<button data-testid={answer["data-testid"]}>{answer.answer}</button>)
+            (<button key={Math.random() * 100} data-testid={answer['data-testid']}>{answer.answer}</button>),
             )
-            /* <button data-testid="correct-answer">{questions[index].correct_answer}</button>
-            {questions[index].incorrect_answers.map((answer, i) => <button data-testid={`wrong-answer-${i}`}>{answer}</button>)} */}
+            }
           </div>
         }
         <button onClick={() => this.handleClick()}>Próxima</button>
