@@ -32,7 +32,7 @@ class QuestionAndAnswers extends React.Component {
 
 QuestionAndAnswers.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   questions: state.questionsReducer,

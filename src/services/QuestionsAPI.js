@@ -6,7 +6,7 @@ function fetchQuestions() {
   return fetchToken().then((token) =>
     fetch(QUESTIONS_URL + token)
     .then((response) => response.json())
-    .then((data) => data.results))
-}
+    .then((data) => data.results));
+};
 
 export default fetchQuestions;

@@ -24,7 +24,7 @@ class Game extends React.Component {
       </header>
     );
   }
-  
+
   render() {
     return (
       <div>
