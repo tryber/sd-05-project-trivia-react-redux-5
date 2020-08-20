@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConfigButton from './ConfigButton';
-import QuestionAndAnswers from './QuestionAndAnswers';
+import QuestionAndAnswers from './QuestionAndAnswers.jsx';
 
 class Game extends React.Component {
   header() {
