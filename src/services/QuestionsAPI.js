@@ -30,6 +30,8 @@ function answers(questions) {
     question: question.question,
     category: question.category,
     answer: randomAnswers(allAnswers),
+    difficulty: question.difficulty,
+    type: question.type,
   })
 }
     )
