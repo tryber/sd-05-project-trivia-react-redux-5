@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 import { setTimer, disableButton, addScore } from '../action';
 import Timer from './Timer';
 
-let interval;
-
 // const createOrClearInterval = (onOrOff, fnc, intervalo) => {
 //   if(onOrOff === 'on') {
 //     return setInterval(() => fnc(-1), 1000);
 //   } else if (onOrOff === 'off') {
 //    return  clearInterval(intervalo)
 //   }
-// } 
+// }
 
 // const intervalo = createOrClearInterval('on', this.props.setTimer);
 
 // createOrClearInterval('off',null, intervalo )
 
 // createOrClearInterval('on', setTimer)
+
+let interval;
 
 class QuestionAndAnswers extends React.Component {
   constructor(props) {
@@ -39,13 +39,12 @@ class QuestionAndAnswers extends React.Component {
         assertions: 0,
         score: 0,
         gravatarEmail: this.props.email,
-      }
-    }
+      },
+    };
     localStorage.setItem('state', JSON.stringify(player));
     this.props.addScore(player.player.score);
   }
 
-  
   handleClick() {
     this.setState({
       index: this.state.index + 1,
@@ -80,14 +79,15 @@ class QuestionAndAnswers extends React.Component {
 
     if (event.target.name === 'correct-answer') {
       player.player.assertions += 1;
-      player.player.score += (10 + (timer * difficulty))
+      player.player.score += 10 + timer * difficulty;
     }
     console.log(player);
 
     localStorage.setItem('state', JSON.stringify(player));
     addScore(player.player.score);
-    return this.state.isClicked ? false :
-    setTimeout(() => this.setState({ isClicked: true }), 5000);
+    return this.state.isClicked
+      ? false
+      : setTimeout(() => this.setState({ isClicked: true }), 5000);
   }
 
   render() {
@@ -97,31 +97,37 @@ class QuestionAndAnswers extends React.Component {
     //   this.clearIntervalTimer(interval);
     //   disableButton(true);
     // }
-    console.log('render')
+    console.log('render');
     return (
       <div>
-        {questions[index] &&
+        {questions[index] && (
           <div>
-            
-            <Timer intervalo={interval}/>
+            <Timer intervalo={interval} />
             <p data-testid="question-category">{questions[index].category}</p>
             <p data-testid="question-text">{questions[index].question}</p>
             {/* <h2>{timer}</h2> */}
-            
-            {
-            questions[index].answer.map((answer) =>
-            (<div>
-              <button disabled={disabled} onClick={(event) => this.answerClick(event)} name={answer['data-testid']} style={isClicked ? answer.style : null} key={Math.random() * 100} data-testid={answer['data-testid']}>{answer.answer}</button>
-            </div>
-            ),
-            )
-            }
+
+            {questions[index].answer.map((answer) => (
+              <div>
+                <button
+                  disabled={disabled}
+                  onClick={(event) => this.answerClick(event)}
+                  name={answer['data-testid']}
+                  style={isClicked ? answer.style : null}
+                  key={Math.random() * 100}
+                  data-testid={answer['data-testid']}
+                >
+                  {answer.answer}
+                </button>
+              </div>
+            ))}
           </div>
-        }
-        {
-          (isClicked || disabled) &&
-          <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
-        }
+        )}
+        {(isClicked || disabled) && (
+          <button data-testid="btn-next" onClick={() => this.handleClick()}>
+            Próxima
+          </button>
+        )}
       </div>
     );
   }
@@ -129,13 +135,19 @@ class QuestionAndAnswers extends React.Component {
 
 QuestionAndAnswers.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTimer: PropTypes.func.isRequired,
+  disableButton: PropTypes.func.isRequired,
+  addScore: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setTimer: (e) => dispatch(setTimer(e)),
   disableButton: (e) => dispatch(disableButton(e)),
   addScore: (e) => dispatch(addScore(e)),
-})
+});
 
 const mapStateToProps = (state) => ({
   questions: state.questionsReducer,

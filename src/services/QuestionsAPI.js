@@ -7,16 +7,16 @@ function answers(questions) {
   const allQuestionsRandomized = questions.map((question) => {
     const { correct_answer, incorrect_answers } = question;
     const correct = {
-      'answer': correct_answer,
+      answer: correct_answer,
       'data-testid': 'correct-answer',
-      'style': {
+      style: {
         border: '3px solid rgb(6, 240, 15)',
       },
     };
     const incorrect = incorrect_answers.map((answer, i) => ({
       answer,
       'data-testid': `wrong-answer-${i}`,
-      'style': {
+      style: {
         border: '3px solid rgb(255, 0, 0)',
       },
     }));
