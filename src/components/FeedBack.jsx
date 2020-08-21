@@ -21,36 +21,43 @@ const header = (player, hash, score) => (
   </header>
 );
 
-const Feedback = (props) => {
-  const { hash, player, score } = props;
-  const assertions = JSON.parse(localStorage.getItem('state')).player
-    .assertions;
-
-
-  return (
-    <div>
-      {header(player, hash, score)}
+class Feedback extends React.Component {
+  componentDidMount() {
+    const { player, score, hash } = this.props;
+    const previousLocalStorage = JSON.parse(localStorage.getItem('ranking')) || [];
+    localStorage.setItem('ranking', JSON.stringify([...previousLocalStorage,
+      {name: player, score, picture: `https://www.gravatar.com/avatar/${hash}`},
+    ]));
+  }
+  render() {
+    const { hash, player, score } = this.props;
+    const assertions = JSON.parse(localStorage.getItem('state')).player
+      .assertions;
+    return (
       <div>
-        {assertions < 3 && (<div data-testid="feedback-text">Podia ser melhor...</div>)}
-        {assertions >= 3 && (<div data-testid="feedback-text">Mandou bem!</div>)}
-        <p>
-          Você acertou{' '}
-          <span data-testid="feedback-total-question">{assertions} </span>
-          questões!
-        </p>
-        <p>
-          Um total de <span data-testid="feedback-total-score">{score} </span>
-          pontos!
-        </p>
+        {header(player, hash, score)}
+        <div>
+          {assertions < 3 && (<div data-testid="feedback-text">Podia ser melhor...</div>)}
+          {assertions >= 3 && (<div data-testid="feedback-text">Mandou bem!</div>)}
+          <p>
+            Você acertou{' '}
+            <span data-testid="feedback-total-question">{assertions} </span>
+            questões!
+          </p>
+          <p>
+            Um total de <span data-testid="feedback-total-score">{score} </span>
+            pontos!
+          </p>
+        </div>
+        <Link to="/">
+          <button data-testid="btn-play-again">Jogar Novamente</button>
+        </Link>
+        <Link to="/ranking">
+          <button data-testid="btn-ranking">Ver Ranking</button>
+        </Link>
       </div>
-      <Link to="/">
-        <button data-testid="btn-play-again">Jogar Novamente</button>
-      </Link>
-      <Link to="/ranking">
-        <button data-testid="btn-ranking">Ver Ranking</button>
-      </Link>
-    </div>
-  );
+    );
+  }
 };
 
 Feedback.propTypes = {
@@ -66,9 +73,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
-
-// A pessoa deve ver a mensagem de feedback
-
-// A mensagem deve ser "Podia ser melhor..." caso a pessoa acerte menos de 3 perguntas
-// A mensagem deve ser "Mandou bem!" caso a pessoa acerte 3 perguntas ou mais
-// O elemento da mensagem de feedback deve possuir o atributo data-testid com o valor feedback-text
