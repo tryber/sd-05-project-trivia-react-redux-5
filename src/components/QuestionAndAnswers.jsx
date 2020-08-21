@@ -73,7 +73,6 @@ class QuestionAndAnswers extends React.Component {
     addScore(player.player.score);
     return this.state.isClicked ? false :
     setTimeout(() => this.setState({ isClicked: true }), 5000);
-    
   }
 
   render() {

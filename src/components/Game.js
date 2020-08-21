@@ -11,22 +11,23 @@ class Game extends React.Component {
       <header>
         <p>
           Player:
-          <span data-testid="header-player-name"> {player}
-          </span>
+          <span data-testid="header-player-name"> {player}</span>
         </p>
-        <img data-testid="header-profile-picture" src={`https://www.gravatar.com/avatar/${hash}`} alt="jogador" />
+        <img
+          data-testid="header-profile-picture"
+          src={`https://www.gravatar.com/avatar/${hash}`}
+          alt="jogador"
+        />
         <p>
           Score:
-          <span data-testid="header-score">
-            {score}
-          </span>
+          <span data-testid="header-score">{score}</span>
         </p>
       </header>
     );
   }
 
   render() {
-    console.log('score')
+    console.log('score');
     return (
       <div>
         {this.header()}

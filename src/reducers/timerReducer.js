@@ -1,4 +1,4 @@
-import { SET_TIMER, IS_DISABLED } from "../action";
+import { SET_TIMER, IS_DISABLED } from '../action';
 
 const INITIAL_STATE = {
   timer: null,
@@ -6,17 +6,18 @@ const INITIAL_STATE = {
 };
 
 export default function timerReducer(state = INITIAL_STATE, action) {
-  switch(action.type) {
+  switch (action.type) {
     case SET_TIMER:
-      return ({
+      return {
         ...state,
-        timer: (state.timer + action.timer) > 30 ? 30 : (state.timer + action.timer),
-      });
+        timer:
+          state.timer + action.timer > 30 ? 30 : state.timer + action.timer,
+      };
     case IS_DISABLED:
-      return ({
+      return {
         ...state,
         disabled: action.disabled,
-      });
+      };
     default:
       return state;
   }

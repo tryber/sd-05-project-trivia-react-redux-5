@@ -8,32 +8,32 @@ export const IS_DISABLED = 'IS_DISABLED';
 export const ADD_SCORE = 'ADD_SCORE';
 
 export function disableButton(disabled) {
-  return ({
+  return {
     type: IS_DISABLED,
     disabled,
-  });
+  };
 }
 
 export function setTimer(timer) {
-  return ({
+  return {
     type: SET_TIMER,
     timer,
-  })
+  };
 }
 
 export function addScore(score) {
-  return ({
+  return {
     type: ADD_SCORE,
     score,
-  });
+  };
 }
 
 export function addUser({ name, email }) {
-  return ({
+  return {
     type: ADD_USER,
     name,
     email,
-  });
+  };
 }
 
 const isRequesting = () => ({
@@ -48,7 +48,8 @@ const addQuestions = (questions) => ({
 export function fetchAndAddQuestions() {
   return (dispatch) => {
     dispatch(isRequesting());
-    return fetchQuestions()
-    .then((questions) => dispatch(addQuestions(questions)));
+    return fetchQuestions().then((questions) =>
+      dispatch(addQuestions(questions)),
+    );
   };
 }

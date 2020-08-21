@@ -17,12 +17,12 @@ function Timer(props) {
 }
 
 const mapStateToProps = (state) => ({
-    timer: state.timerReducer.timer,
-})
+  timer: state.timerReducer.timer,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setTimer: (e) => dispatch(setTimer(e)),
   disableButton: (e) => dispatch(disableButton(e)),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

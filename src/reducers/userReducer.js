@@ -8,20 +8,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_USER:
       // (state.filter(action.email));
-      return (
-      {
+      return {
         ...state,
         name: action.name,
         email: action.email,
         hash: CryptoJS.MD5(action.email.toLowerCase()).toString(),
-      }
-      );
+      };
     case ADD_SCORE:
-      console.log('teste')
-      return ({
+      console.log('teste');
+      return {
         ...state,
         score: action.score,
-      })
+      };
     default:
       return state;
   }
