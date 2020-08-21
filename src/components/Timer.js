@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { interval } from './QuestionAndAnswers';
+// import { interval } from './QuestionAndAnswers';
 import { disableButton, setTimer } from '../action';
 
 function Timer(props) {
   if (props.timer < 1 && props.timer !== null) {
-    clearInterval(interval);
+    clearInterval(props.intervalo);
     props.disableButton(true);
   }
 

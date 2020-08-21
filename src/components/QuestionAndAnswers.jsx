@@ -4,7 +4,21 @@ import PropTypes from 'prop-types';
 import { setTimer, disableButton, addScore } from '../action';
 import Timer from './Timer';
 
-export let interval;
+let interval;
+
+// const createOrClearInterval = (onOrOff, fnc, intervalo) => {
+//   if(onOrOff === 'on') {
+//     return setInterval(() => fnc(-1), 1000);
+//   } else if (onOrOff === 'off') {
+//    return  clearInterval(intervalo)
+//   }
+// } 
+
+// const intervalo = createOrClearInterval('on', this.props.setTimer);
+
+// createOrClearInterval('off',null, intervalo )
+
+// createOrClearInterval('on', setTimer)
 
 class QuestionAndAnswers extends React.Component {
   constructor(props) {
@@ -31,6 +45,7 @@ class QuestionAndAnswers extends React.Component {
     this.props.addScore(player.player.score);
   }
 
+  
   handleClick() {
     this.setState({
       index: this.state.index + 1,
@@ -76,7 +91,7 @@ class QuestionAndAnswers extends React.Component {
   }
 
   render() {
-    const { questions, disabled, disableButton } = this.props;
+    const { questions, disabled } = this.props;
     const { index, isClicked } = this.state;
     // if (timer < 1 && timer !== null) {
     //   this.clearIntervalTimer(interval);
@@ -88,7 +103,7 @@ class QuestionAndAnswers extends React.Component {
         {questions[index] &&
           <div>
             
-            <Timer />
+            <Timer intervalo={interval}/>
             <p data-testid="question-category">{questions[index].category}</p>
             <p data-testid="question-text">{questions[index].question}</p>
             {/* <h2>{timer}</h2> */}
