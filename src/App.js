@@ -14,14 +14,16 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Switch>
+      </header>
+      <section className="Main-site">
+      <Switch>
           <Route path="/feedback" component={Feedback} />
           <Route path="/ranking" component={Ranking} />
           <Route path="/game" component={Game} />
           <Route path="/settings" component={Settings} />
           <Route exact path="/" component={Login} />
         </Switch>
-      </header>
+      </section>
     </div>
   );
 }

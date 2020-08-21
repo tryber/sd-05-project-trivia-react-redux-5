@@ -8,16 +8,16 @@ class Game extends React.Component {
   header() {
     const { hash, player, score } = this.props;
     return (
-      <header>
-        <p>
-          Player:
-          <span data-testid="header-player-name"> {player}</span>
-        </p>
+      <header className="Game-header">
         <img
           data-testid="header-profile-picture"
           src={`https://www.gravatar.com/avatar/${hash}`}
           alt="jogador"
         />
+        <p>
+          Player:
+          <span data-testid="header-player-name"> {player}</span>
+        </p>
         <p>
           Score:
           <span data-testid="header-score">{score}</span>
@@ -29,7 +29,7 @@ class Game extends React.Component {
   render() {
     console.log('score');
     return (
-      <div>
+      <div className="Game-div">
         {this.header()}
         <QuestionAndAnswers />
         <ConfigButton />
