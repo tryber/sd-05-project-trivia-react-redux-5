@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { interval } from './QuestionAndAnswers';
 import { disableButton } from '../action';
-import PropTypes from 'prop-types';
 
 function Timer(props) {
   if (props.timer < 1 && props.timer !== null) {
