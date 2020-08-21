@@ -97,7 +97,7 @@ class QuestionAndAnswers extends React.Component {
                   key={Math.random() * 100}
                   data-testid={answer['data-testid']}
                 >{answer.answer}</button>
-                {index === 5 && <Redirect to="/feedback" />}
+                {index > 3 && <Redirect to="/feedback" />}
               </div>
             ))}
           </div>
@@ -106,7 +106,8 @@ class QuestionAndAnswers extends React.Component {
           <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         )}
       </div>
-    );}
+    );
+  }
 }
 
 QuestionAndAnswers.propTypes = {
