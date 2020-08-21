@@ -1,7 +1,10 @@
 import fetchToken from './TokenAPI';
 import randomAnswers from './randomArray';
+import { decodeEntities } from './DecodeEntities';
 
 const QUESTIONS_URL = 'https://opentdb.com/api.php?amount=5&token=';
+
+
 
 function answers(questions) {
   const allQuestionsRandomized = questions.map((question) => {
@@ -14,7 +17,7 @@ function answers(questions) {
       },
     };
     const incorrect = incorrect_answers.map((answer, i) => ({
-      answer,
+      answer: decodeEntities(answer),
       'data-testid': `wrong-answer-${i}`,
       style: {
         border: '3px solid rgb(255, 0, 0)',
@@ -26,7 +29,7 @@ function answers(questions) {
     // randomAnswers(allAnswers);
 
     return {
-      question: question.question,
+      question: decodeEntities(question.question),
       category: question.category,
       answer: randomAnswers(allAnswers),
       difficulty: question.difficulty,
