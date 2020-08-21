@@ -12,7 +12,7 @@ export default function decodeEntities(encodedString) {
       return translate[entity];
     })
     .replace(/&#(\d+);/gi, function (numStr) {
-      var num = parseInt(numStr, 10);
+      const num = parseInt(numStr, 10);
       return String.fromCharCode(num);
     });
 }

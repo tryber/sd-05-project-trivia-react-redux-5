@@ -8,7 +8,6 @@ import Settings from './components/Settings';
 import Feedback from './components/FeedBack';
 import Ranking from './components/Ranking';
 
-
 export default function App() {
   return (
     <div className="App">
@@ -17,12 +16,12 @@ export default function App() {
       </header>
       <section className="Main-site">
       <Switch>
-          <Route path="/feedback" component={Feedback} />
-          <Route path="/ranking" component={Ranking} />
-          <Route path="/game" component={Game} />
-          <Route path="/settings" component={Settings} />
-          <Route exact path="/" component={Login} />
-        </Switch>
+        <Route path="/feedback" component={Feedback} />
+        <Route path="/ranking" component={Ranking} />
+        <Route path="/game" component={Game} />
+        <Route path="/settings" component={Settings} />
+        <Route exact path="/" component={Login} />
+      </Switch>
       </section>
     </div>
   );
