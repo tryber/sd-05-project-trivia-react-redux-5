@@ -5,6 +5,7 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const ADD_USER = 'ADD_USER';
 export const SET_TIMER = 'SET_TIMER';
 export const IS_DISABLED = 'IS_DISABLED';
+export const ADD_SCORE = 'ADD_SCORE';
 
 export function disableButton(disabled) {
   return ({
@@ -18,6 +19,13 @@ export function setTimer(timer) {
     type: SET_TIMER,
     timer,
   })
+}
+
+export function addScore(score) {
+  return ({
+    type: ADD_SCORE,
+    score,
+  });
 }
 
 export function addUser({ name, email }) {

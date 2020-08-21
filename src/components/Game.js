@@ -6,7 +6,7 @@ import QuestionAndAnswers from './QuestionAndAnswers.jsx';
 
 class Game extends React.Component {
   header() {
-    const { hash, player } = this.props;
+    const { hash, player, score } = this.props;
     return (
       <header>
         <p>
@@ -18,7 +18,7 @@ class Game extends React.Component {
         <p>
           Score:
           <span data-testid="header-score">
-            0
+            {score}
           </span>
         </p>
       </header>
@@ -26,6 +26,7 @@ class Game extends React.Component {
   }
 
   render() {
+    console.log('score')
     return (
       <div>
         {this.header()}
@@ -44,6 +45,7 @@ Game.propTypes = {
 const mapStateToProps = (state) => ({
   player: state.userReducer.name,
   hash: state.userReducer.hash,
+  score: state.userReducer.score,
 });
 
 export default connect(mapStateToProps)(Game);

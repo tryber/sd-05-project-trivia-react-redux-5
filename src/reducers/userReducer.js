@@ -1,4 +1,4 @@
-import { ADD_USER } from '../action';
+import { ADD_USER, ADD_SCORE } from '../action';
 
 const CryptoJS = require('crypto-js');
 
@@ -10,11 +10,18 @@ const userReducer = (state = INITIAL_STATE, action) => {
       // (state.filter(action.email));
       return (
       {
+        ...state,
         name: action.name,
         email: action.email,
         hash: CryptoJS.MD5(action.email.toLowerCase()).toString(),
       }
       );
+    case ADD_SCORE:
+      console.log('teste')
+      return ({
+        ...state,
+        score: action.score,
+      })
     default:
       return state;
   }
