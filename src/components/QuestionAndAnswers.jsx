@@ -1,23 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { setTimer, disableButton, addScore } from '../action';
 import Timer from './Timer';
-import { Redirect } from 'react-router-dom';
-
-// const createOrClearInterval = (onOrOff, fnc, intervalo) => {
-//   if(onOrOff === 'on') {
-//     return setInterval(() => fnc(-1), 1000);
-//   } else if (onOrOff === 'off') {
-//    return  clearInterval(intervalo)
-//   }
-// }
-
-// const intervalo = createOrClearInterval('on', this.props.setTimer);
-
-// createOrClearInterval('off',null, intervalo )
-
-// createOrClearInterval('on', setTimer)
 
 let interval;
 
@@ -47,7 +33,6 @@ class QuestionAndAnswers extends React.Component {
   }
 
   handleClick() {
-    const { index } = this.state;
     this.setState({
       index: this.state.index + 1,
       isClicked: false,
@@ -55,11 +40,6 @@ class QuestionAndAnswers extends React.Component {
     this.props.disableButton(false);
     this.props.setTimer(30);
     interval = setInterval(() => this.props.setTimer(-1), 1000);
-
-    // if (index > 1) {
-    //   // console
-    //   return (<Redirect to="/feedback" />)
-    // }
   }
 
   answerClick(event) {
@@ -116,10 +96,8 @@ class QuestionAndAnswers extends React.Component {
                   style={isClicked ? answer.style : null}
                   key={Math.random() * 100}
                   data-testid={answer['data-testid']}
-                >
-                  {answer.answer}
-                </button>
-                {index === 4 && <Redirect to="/feedback" />}
+                >{answer.answer}</button>
+                {index === 5 && <Redirect to="/feedback" />}
               </div>
             ))}
           </div>
@@ -128,8 +106,7 @@ class QuestionAndAnswers extends React.Component {
           <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         )}
       </div>
-    );
-  }
+    );}
 }
 
 QuestionAndAnswers.propTypes = {
@@ -150,7 +127,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   questions: state.questionsReducer,
-  // timer: state.timerReducer.timer,
   disabled: state.timerReducer.disabled,
   name: state.userReducer.name,
   email: state.userReducer.email,

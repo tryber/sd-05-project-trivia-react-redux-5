@@ -31,12 +31,8 @@ const Feedback = (props) => {
     <div>
       {header(player, hash, score)}
       <div>
-        {assertions < 3 && (
-          <div data-testid="feedback-text">Podia ser melhor...</div>
-        )}
-        {assertions >= 3 && (
-          <div data-testid="feedback-text">Podia ser melhor...</div>
-        )}
+        {assertions < 3 && (<div data-testid="feedback-text">Podia ser melhor...</div>)}
+        {assertions >= 3 && (<div data-testid="feedback-text">Mandou bem!</div>)}
         <p>
           Você acertou{' '}
           <span data-testid="feedback-total-question">{assertions} </span>
@@ -60,7 +56,7 @@ const Feedback = (props) => {
 Feedback.propTypes = {
   hash: PropTypes.string.isRequired,
   player: PropTypes.string.isRequired,
-  score: PropTypes.number,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
