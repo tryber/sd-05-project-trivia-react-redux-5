@@ -1,10 +1,8 @@
 import fetchToken from './TokenAPI';
 import randomAnswers from './randomArray';
-import { decodeEntities } from './DecodeEntities';
+import decodeEntities from './DecodeEntities';
 
 const QUESTIONS_URL = 'https://opentdb.com/api.php?amount=5&token=';
-
-
 
 function answers(questions) {
   const allQuestionsRandomized = questions.map((question) => {

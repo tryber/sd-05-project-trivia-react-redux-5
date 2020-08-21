@@ -1,6 +1,6 @@
-export function decodeEntities(encodedString) {
-  let translate_re = /&(nbsp|amp|quot|lt|gt);/g;
-  let translate = {
+export default function decodeEntities(encodedString) {
+  const translateRe = /&(nbsp|amp|quot|lt|gt);/g;
+  const translate = {
     nbsp: ' ',
     amp: '&',
     quot: '"',
@@ -8,7 +8,7 @@ export function decodeEntities(encodedString) {
     gt: '>',
   };
   return encodedString
-    .replace(translate_re, function (entity) {
+    .replace(translateRe, function (entity) {
       return translate[entity];
     })
     .replace(/&#(\d+);/gi, function (numStr) {
