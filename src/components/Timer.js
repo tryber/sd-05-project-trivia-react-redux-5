@@ -31,6 +31,6 @@ Timer.propTypes = {
   // setTimer: PropTypes.func.isRequired,
   disableButton: PropTypes.func.isRequired,
   intervalo: PropTypes.func.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
