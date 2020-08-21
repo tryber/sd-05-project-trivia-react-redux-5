@@ -97,11 +97,11 @@ class QuestionAndAnswers extends React.Component {
                   key={Math.random() * 100}
                   data-testid={answer['data-testid']}
                 >{answer.answer}</button>
-                {index > 3 && <Redirect to="/feedback" />}
               </div>
             ))}
           </div>
         )}
+        {index === 5 && <Redirect to="/feedback" />}
         {(isClicked || disabled) && (
           <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         )}
