@@ -56,7 +56,7 @@ class QuestionAndAnswers extends React.Component {
   }
 
   answerClick(event) {
-    const { questions, addScore } = this.props;
+    const { questions } = this.props;
     const timer = document.getElementById('timer').innerHTML;
     console.log(questions[this.state.index]);
     clearInterval(interval);
@@ -79,12 +79,12 @@ class QuestionAndAnswers extends React.Component {
 
     if (event.target.name === 'correct-answer') {
       player.player.assertions += 1;
-      player.player.score += 10 + timer * difficulty;
+      player.player.score += 10 + (timer * difficulty);
     }
     console.log(player);
 
     localStorage.setItem('state', JSON.stringify(player));
-    addScore(player.player.score);
+    this.props.addScore(player.player.score);
     return this.state.isClicked
       ? false
       : setTimeout(() => this.setState({ isClicked: true }), 5000);
@@ -93,11 +93,6 @@ class QuestionAndAnswers extends React.Component {
   render() {
     const { questions, disabled } = this.props;
     const { index, isClicked } = this.state;
-    // if (timer < 1 && timer !== null) {
-    //   this.clearIntervalTimer(interval);
-    //   disableButton(true);
-    // }
-    console.log('render');
     return (
       <div>
         {questions[index] && (
@@ -105,8 +100,6 @@ class QuestionAndAnswers extends React.Component {
             <Timer intervalo={interval} />
             <p data-testid="question-category">{questions[index].category}</p>
             <p data-testid="question-text">{questions[index].question}</p>
-            {/* <h2>{timer}</h2> */}
-
             {questions[index].answer.map((answer) => (
               <div>
                 <button
@@ -124,9 +117,7 @@ class QuestionAndAnswers extends React.Component {
           </div>
         )}
         {(isClicked || disabled) && (
-          <button data-testid="btn-next" onClick={() => this.handleClick()}>
-            Próxima
-          </button>
+          <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
         )}
       </div>
     );

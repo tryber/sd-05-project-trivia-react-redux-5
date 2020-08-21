@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { interval } from './QuestionAndAnswers';
-import { disableButton, setTimer } from '../action';
+import { disableButton } from '../action';
 import PropTypes from 'prop-types';
 
 function Timer(props) {
@@ -22,15 +22,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setTimer: (e) => dispatch(setTimer(e)),
+  // setTimer: (e) => dispatch(setTimer(e)),
   disableButton: (e) => dispatch(disableButton(e)),
 });
 
 Timer.propTypes = {
   timer: PropTypes.number.isRequired,
-  setTimer: PropTypes.func.isRequired,
+  // setTimer: PropTypes.func.isRequired,
   disableButton: PropTypes.func.isRequired,
   intervalo: PropTypes.func.isRequired,
-} 
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
