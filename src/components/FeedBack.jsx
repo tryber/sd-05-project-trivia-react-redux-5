@@ -26,7 +26,7 @@ class Feedback extends React.Component {
     const { player, score, hash } = this.props;
     const previousLocalStorage = JSON.parse(localStorage.getItem('ranking')) || [];
     localStorage.setItem('ranking', JSON.stringify([...previousLocalStorage,
-      {name: player, score, picture: `https://www.gravatar.com/avatar/${hash}`},
+      { name: player, score, picture: `https://www.gravatar.com/avatar/${hash}` },
     ]));
   }
   render() {
@@ -58,7 +58,7 @@ class Feedback extends React.Component {
       </div>
     );
   }
-};
+}
 
 Feedback.propTypes = {
   hash: PropTypes.string.isRequired,
