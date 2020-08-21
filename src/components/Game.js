@@ -41,7 +41,7 @@ class Game extends React.Component {
 Game.propTypes = {
   hash: PropTypes.string.isRequired,
   player: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
+  score: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({

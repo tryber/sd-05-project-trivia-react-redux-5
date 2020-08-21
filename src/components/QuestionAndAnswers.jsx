@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setTimer, disableButton, addScore } from '../action';
 import Timer from './Timer';
+import { Redirect } from 'react-router-dom';
 
 // const createOrClearInterval = (onOrOff, fnc, intervalo) => {
 //   if(onOrOff === 'on') {
@@ -46,6 +47,7 @@ class QuestionAndAnswers extends React.Component {
   }
 
   handleClick() {
+    const { index } = this.state;
     this.setState({
       index: this.state.index + 1,
       isClicked: false,
@@ -53,6 +55,11 @@ class QuestionAndAnswers extends React.Component {
     this.props.disableButton(false);
     this.props.setTimer(30);
     interval = setInterval(() => this.props.setTimer(-1), 1000);
+
+    // if (index > 1) {
+    //   // console
+    //   return (<Redirect to="/feedback" />)
+    // }
   }
 
   answerClick(event) {
@@ -112,6 +119,7 @@ class QuestionAndAnswers extends React.Component {
                 >
                   {answer.answer}
                 </button>
+                {index === 4 && <Redirect to="/feedback" />}
               </div>
             ))}
           </div>
