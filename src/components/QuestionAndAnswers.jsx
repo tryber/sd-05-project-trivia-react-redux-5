@@ -32,13 +32,17 @@ class QuestionAndAnswers extends React.Component {
     this.props.addScore(player.player.score);
   }
 
+  componentWillUnmount() {
+    clearInterval(interval);
+  }
+
   handleClick() {
     this.setState({
       index: this.state.index + 1,
       isClicked: false,
     });
     this.props.disableButton(false);
-    this.props.setTimer(30);
+    if (this.state.index < 3) this.props.setTimer(30);
     interval = setInterval(() => this.props.setTimer(-1), 1000);
   }
 
