@@ -7,7 +7,7 @@ import { fetchAndAddQuestions } from '../action';
 export default function GameButton({ isAvailable, click }) {
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="btn-block">
       <Link to="/game">
         <button
           data-testid="btn-play"
@@ -16,6 +16,13 @@ export default function GameButton({ isAvailable, click }) {
             dispatch(fetchAndAddQuestions());
             click();
           }}
+          className="
+          btn
+          btn-success
+          btn-block
+          form-control
+          m-*-1
+          "
         >
           Jogar
         </button>

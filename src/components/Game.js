@@ -9,19 +9,23 @@ class Game extends React.Component {
     const { hash, player, score } = this.props;
     return (
       <header className="Game-header">
-        <img
-          data-testid="header-profile-picture"
-          src={`https://www.gravatar.com/avatar/${hash}`}
-          alt="jogador"
-        />
-        <p>
-          Player:
-          <span data-testid="header-player-name"> {player}</span>
-        </p>
-        <p>
-          Score:
-          <span data-testid="header-score">{score}</span>
-        </p>
+        <div>
+          <img
+            data-testid="header-profile-picture"
+            src={`https://www.gravatar.com/avatar/${hash}`}
+            alt="jogador"
+          />
+        </div>
+        <div className="player-data">
+          <p>
+            Player:
+            <span data-testid="header-player-name"> {player}</span>
+          </p>
+          <p>
+            Score:
+            <span data-testid="header-score">{score}</span>
+          </p>
+        </div>
       </header>
     );
   }

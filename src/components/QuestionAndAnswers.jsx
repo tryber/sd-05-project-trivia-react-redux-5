@@ -85,12 +85,12 @@ class QuestionAndAnswers extends React.Component {
     const { questions, disabled } = this.props;
     const { index, isClicked } = this.state;
     return (
-      <div>
+      <div className="game">
+        <Timer intervalo={interval} />
         {questions[index] && (
-          <div>
-            <Timer intervalo={interval} />
+          <div className="questions">
+            <p data-testid="question-text" className="question">{questions[index].question}</p>
             <p data-testid="question-category">{questions[index].category}</p>
-            <p data-testid="question-text">{questions[index].question}</p>
             {questions[index].answer.map((answer) => (
               <div>
                 <button
@@ -100,6 +100,7 @@ class QuestionAndAnswers extends React.Component {
                   style={isClicked ? answer.style : null}
                   key={Math.random() * 100}
                   data-testid={answer['data-testid']}
+                  className="btn btn-block btn-dark mb-2"
                 >{answer.answer}</button>
               </div>
             ))}
@@ -107,7 +108,7 @@ class QuestionAndAnswers extends React.Component {
         )}
         {index === 5 && <Redirect to="/feedback" />}
         {(isClicked || disabled) && (
-          <button data-testid="btn-next" onClick={() => this.handleClick()}>Próxima</button>
+          <button data-testid="btn-next" onClick={() => this.handleClick()} className="btn btn-outline-secondary btn-block">Próxima</button>
         )}
       </div>
     );
