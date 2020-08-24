@@ -86,10 +86,11 @@ class QuestionAndAnswers extends React.Component {
     const { index, isClicked } = this.state;
     return (
       <div className="game">
-        <Timer intervalo={interval} />
         {questions[index] && (
           <div className="questions">
-            <p data-testid="question-text" className="question">{questions[index].question}</p>
+                    <Timer intervalo={interval} />
+
+            <h3 data-testid="question-text" className="question">{questions[index].question}</h3>
             <p data-testid="question-category">{questions[index].category}</p>
             {questions[index].answer.map((answer) => (
               <div>
@@ -108,7 +109,7 @@ class QuestionAndAnswers extends React.Component {
         )}
         {index === 5 && <Redirect to="/feedback" />}
         {(isClicked || disabled) && (
-          <button data-testid="btn-next" onClick={() => this.handleClick()} className="btn btn-outline-secondary btn-block">Próxima</button>
+          <button data-testid="btn-next" onClick={() => this.handleClick()} className="btn btn-success btn-block">Próxima</button>
         )}
       </div>
     );

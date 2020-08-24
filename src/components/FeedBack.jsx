@@ -34,14 +34,15 @@ class Feedback extends React.Component {
     const assertions = JSON.parse(localStorage.getItem('state')).player
       .assertions;
     return (
-      <div>
+      <div className='Game-div'>
+      <div className="questions">
         {header(player, hash, score)}
         <div>
           {assertions < 3 && (<div data-testid="feedback-text">Podia ser melhor...</div>)}
           {assertions >= 3 && (<div data-testid="feedback-text">Mandou bem!</div>)}
           <p>
             Você acertou{' '}
-            <span data-testid="feedback-total-question">{assertions} </span>
+            <span  data-testid="feedback-total-question">{assertions} </span>
             questões!
           </p>
           <p>
@@ -49,12 +50,15 @@ class Feedback extends React.Component {
             pontos!
           </p>
         </div>
+        <div className='botoes-retornar'>
         <Link to="/">
-          <button data-testid="btn-play-again">Jogar Novamente</button>
+          <button data-testid="btn-play-again" className='btn-block btn btn-success'>Jogar Novamente</button>
         </Link>
         <Link to="/ranking">
-          <button data-testid="btn-ranking">Ver Ranking</button>
+          <button data-testid="btn-ranking" className='btn btn-block'>Ver Ranking</button>
         </Link>
+        </div>
+      </div>
       </div>
     );
   }

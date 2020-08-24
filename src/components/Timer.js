@@ -12,11 +12,15 @@ function Timer(props) {
 
   return (
     <div>
-      <h1 id="timer">{props.timer}</h1>
+      <h1 id="timer" style={props.timer > 20 ? {'color':'#00DB05'}: props.timer > 10 ?{'color':'orange'} : {'color':'red'}}>{props.timer}</h1>
     </div>
   );
 }
 
+// style={isClicked ? answer.style : null}
+// style: {
+//   border: '3px solid rgb(255, 0, 0)',
+// },
 const mapStateToProps = (state) => ({
   timer: state.timerReducer.timer,
 });

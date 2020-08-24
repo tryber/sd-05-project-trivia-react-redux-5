@@ -17,14 +17,14 @@ class Game extends React.Component {
           />
         </div>
         <div className="player-data">
-          <p>
-            Player:
+          <h4>
+            {/* Player: */}
             <span data-testid="header-player-name"> {player}</span>
-          </p>
-          <p>
-            Score:
-            <span data-testid="header-score">{score}</span>
-          </p>
+          </h4>
+          <h4>
+            {/* Score:  */}
+            <span data-testid="header-score"> {score}</span>
+          </h4>
         </div>
       </header>
     );
