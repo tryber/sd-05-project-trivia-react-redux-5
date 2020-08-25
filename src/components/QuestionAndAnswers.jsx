@@ -13,6 +13,7 @@ class QuestionAndAnswers extends React.Component {
     this.state = {
       index: 0,
       isClicked: false,
+      clickedOnce: false,
     };
   }
 
@@ -40,6 +41,7 @@ class QuestionAndAnswers extends React.Component {
     this.setState({
       index: this.state.index + 1,
       isClicked: false,
+      clickedOnce: false,
     });
     this.props.disableButton(false);
     if (this.state.index < 3) this.props.setTimer(30);
@@ -50,7 +52,9 @@ class QuestionAndAnswers extends React.Component {
     const { questions } = this.props;
     const timer = document.getElementById('timer').innerHTML;
     console.log(questions[this.state.index]);
+    if(interval) {
     clearInterval(interval);
+    }
     const player = JSON.parse(localStorage.getItem('state'));
     let difficulty = 0;
     switch (questions[this.state.index].difficulty) {
@@ -68,15 +72,20 @@ class QuestionAndAnswers extends React.Component {
         break;
     }
 
-    if (event.target.name === 'correct-answer') {
+    if (event.target.name === 'correct-answer' && this.state.clickedOnce === false) {
       player.player.assertions += 1;
       player.player.score += 10 + (timer * difficulty);
+
     }
-    console.log(player);
+
+    this.setState({
+      clickedOnce: true,
+    })
+    // console.log(player);
 
     localStorage.setItem('state', JSON.stringify(player));
     this.props.addScore(player.player.score);
-    return this.state.isClicked
+    return (this.state.isClicked && !this.state.clickedOnce) 
       ? false
       : setTimeout(() => this.setState({ isClicked: true }), 5000);
   }

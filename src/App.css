@@ -97,6 +97,12 @@ a:hover {
   width: 70%;
 }
 
+.Game-divE {
+  width: 70%;
+  overflow: scroll;
+  height: 100%;
+}
+
 .player-data {
   width: 100%;
   display: flex;
@@ -141,7 +147,6 @@ a:hover {
   display: flex;
   height: 80vh;
   justify-content: center;
-
 }
 
 .question {
@@ -165,4 +170,11 @@ a:hover {
 .botoes-retornar {
   display: flex;
   flex-direction: column;
+}
+
+.ranking {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 100%;
 }

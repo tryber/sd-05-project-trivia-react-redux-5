@@ -1,20 +1,7 @@
 export default function decodeEntities(encodedString) {
-  const translateRe = /&(nbsp|amp|quot|lt|gt);/g;
-  const translate = {
-    nbsp: ' ',
-    amp: '&',
-    quot: '"',
-    lt: '<',
-    gt: '>',
-  };
-  return encodedString
-    .replace(translateRe, function (entity) {
-      return translate[entity];
-    })
-    .replace(/&#(\d+);/gi, function (numStr) {
-      const num = parseInt(numStr, 10);
-      return String.fromCharCode(num);
-    });
+  const txt = document.createElement("textarea");
+  txt.innerHTML = encodedString;
+  return txt.value;
 }
 
-// https://stackoverflow.com/questions/44195322/a-plain-javascript-way-to-decode-html-entities-works-on-both-browsers-and-node
+// Função criada por Rafael Quinteiro (t05) para decodificar entidade do HTML, por que o react não tá decodando, misteriosamente 

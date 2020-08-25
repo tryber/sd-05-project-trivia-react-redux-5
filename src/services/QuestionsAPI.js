@@ -8,7 +8,7 @@ function answers(questions) {
   const allQuestionsRandomized = questions.map((question) => {
     const { correct_answer, incorrect_answers } = question;
     const correct = {
-      answer: correct_answer,
+      answer: decodeEntities(correct_answer),
       'data-testid': 'correct-answer',
       style: {
         border: '3px solid rgb(6, 240, 15)',
@@ -23,8 +23,6 @@ function answers(questions) {
     }));
 
     const allAnswers = [...incorrect, correct];
-
-    // randomAnswers(allAnswers);
 
     return {
       question: decodeEntities(question.question),
